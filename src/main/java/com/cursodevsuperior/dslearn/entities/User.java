@@ -27,13 +27,14 @@ public class User {
 	private String password;
 
 	@ManyToMany
-	@JoinTable(name = "tb_user_role", 
-		joinColumns = @JoinColumn(name = "user_id"), 
-		inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user")
 	private List<Notification> notifications = new ArrayList<>();
+
+	@OneToMany(mappedBy = "id.user")
+	private List<Enrollment> enrollments = new ArrayList<>();
 
 	public User() {
 	}
@@ -79,6 +80,18 @@ public class User {
 
 	public List<Role> getRoles() {
 		return roles;
+	}
+
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+	public List<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+
+	public List<Offer> getOffers() {
+		return enrollments.stream().map(enrollment -> enrollment.getOffer()).toList();
 	}
 
 	@Override
