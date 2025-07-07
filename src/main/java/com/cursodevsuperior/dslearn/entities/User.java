@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,17 +21,20 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String name;
 	private String email;
 	private String password;
-	
+
 	@ManyToMany
-	@JoinTable(name = "tb_user_role",
-		joinColumns = @JoinColumn(name = "user_id"),
+	@JoinTable(name = "tb_user_role", 
+		joinColumns = @JoinColumn(name = "user_id"), 
 		inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles = new ArrayList<>();
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Notification> notifications = new ArrayList<>();
+
 	public User() {
 	}
 
