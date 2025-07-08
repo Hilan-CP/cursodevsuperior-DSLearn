@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +24,10 @@ public class Section {
 	private Long id;
 
 	private String title;
+
+	@Column(columnDefinition = "TEXT")
 	private String description;
+
 	private Integer position;
 	private String imgUri;
 

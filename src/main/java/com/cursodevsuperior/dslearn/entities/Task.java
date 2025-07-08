@@ -2,6 +2,7 @@ package com.cursodevsuperior.dslearn.entities;
 
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -9,10 +10,14 @@ import jakarta.persistence.Table;
 @Table(name = "tb_task")
 public class Task extends Lesson {
 
+	@Column(columnDefinition = "TEXT")
 	private String description;
+	
 	private Integer questionCount;
 	private Integer approvalCount;
 	private Double weight;
+
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant dueDate;
 
 	public Task() {

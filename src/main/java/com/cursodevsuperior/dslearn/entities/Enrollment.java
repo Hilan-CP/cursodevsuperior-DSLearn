@@ -2,9 +2,12 @@ package com.cursodevsuperior.dslearn.entities;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -18,13 +21,17 @@ public class Enrollment {
 	@EmbeddedId
 	private EnrollmentPK id = new EnrollmentPK();
 
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant enrollMoment;
+
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant refundMoment;
+	
 	private boolean available;
 	private boolean onlyUpdate;
 
 	@ManyToMany(mappedBy = "enrollmentsDone")
-	private List<Lesson> lessonsDone = new ArrayList<>();
+	private Set<Lesson> lessonsDone = new HashSet<>();
 
 	@OneToMany(mappedBy = "enrollment")
 	private List<Deliver> deliveries = new ArrayList<>();
@@ -90,7 +97,7 @@ public class Enrollment {
 		this.onlyUpdate = onlyUpdate;
 	}
 
-	public List<Lesson> getLessonsDone() {
+	public Set<Lesson> getLessonsDone() {
 		return lessonsDone;
 	}
 

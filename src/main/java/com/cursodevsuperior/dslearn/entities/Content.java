@@ -1,5 +1,6 @@
 package com.cursodevsuperior.dslearn.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -7,7 +8,9 @@ import jakarta.persistence.Table;
 @Table(name = "tb_content")
 public class Content extends Lesson {
 
+	@Column(columnDefinition = "TEXT")
 	private String textContent;
+	
 	private String videoUri;
 
 	public Content() {

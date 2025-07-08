@@ -1,9 +1,12 @@
 package com.cursodevsuperior.dslearn.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,12 +26,15 @@ public class User {
 	private Long id;
 
 	private String name;
+
+	@Column(unique = true)
 	private String email;
+	
 	private String password;
 
 	@ManyToMany
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<Role> roles = new ArrayList<>();
+	private Set<Role> roles = new HashSet<>();
 
 	@OneToMany(mappedBy = "user")
 	private List<Notification> notifications = new ArrayList<>();
@@ -84,7 +90,7 @@ public class User {
 		this.password = password;
 	}
 
-	public List<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 

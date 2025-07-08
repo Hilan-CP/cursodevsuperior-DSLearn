@@ -63,4 +63,4 @@ INSERT INTO tb_topic_likes (topic_id, user_id) VALUES (1, 2);
 INSERT INTO tb_topic_likes (topic_id, user_id) VALUES (2, 1);
 
 INSERT INTO tb_reply_likes (reply_id, user_id) VALUES (1, 1);
-INSERT INTO tb_reply_likes (reply_id, user_id) VALUES (1, 2);
+INSERT INTO tb_reply_likes (reply_id, user_id) VALUES (2, 2);

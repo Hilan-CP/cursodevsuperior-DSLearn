@@ -1,8 +1,10 @@
 package com.cursodevsuperior.dslearn.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,7 +42,7 @@ public abstract class Lesson {
 				@JoinColumn(name = "user_id"),
 				@JoinColumn(name = "offer_id")
 		})
-	private List<Enrollment> enrollmentsDone = new ArrayList<>();
+	private Set<Enrollment> enrollmentsDone = new HashSet<>();
 
 	@OneToMany(mappedBy = "lesson")
 	private List<Deliver> deliveries = new ArrayList<>();
@@ -90,7 +92,7 @@ public abstract class Lesson {
 		this.section = section;
 	}
 
-	public List<Enrollment> getEnrollmentsDone() {
+	public Set<Enrollment> getEnrollmentsDone() {
 		return enrollmentsDone;
 	}
 

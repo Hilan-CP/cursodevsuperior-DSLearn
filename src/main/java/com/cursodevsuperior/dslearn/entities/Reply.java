@@ -1,10 +1,11 @@
 package com.cursodevsuperior.dslearn.entities;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,8 @@ public class Reply {
 	private Long id;
 
 	private String body;
+
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant moment;
 
 	@ManyToOne
@@ -38,7 +41,7 @@ public class Reply {
 	@JoinTable(name = "tb_reply_likes",
 			joinColumns = @JoinColumn(name = "reply_id"),
 			inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private List<User> likes = new ArrayList<>();
+	private Set<User> likes = new HashSet<>();
 
 	public Reply() {
 	}
@@ -91,7 +94,7 @@ public class Reply {
 		this.author = author;
 	}
 
-	public List<User> getLikes() {
+	public Set<User> getLikes() {
 		return likes;
 	}
 
