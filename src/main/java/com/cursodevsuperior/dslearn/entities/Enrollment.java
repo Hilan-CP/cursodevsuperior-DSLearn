@@ -1,10 +1,13 @@
 package com.cursodevsuperior.dslearn.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +21,9 @@ public class Enrollment {
 	private Instant refundMoment;
 	private boolean available;
 	private boolean onlyUpdate;
+
+	@ManyToMany(mappedBy = "enrollmentsDone")
+	private List<Lesson> lessonsDone = new ArrayList<>();
 
 	public Enrollment() {
 	}
@@ -78,6 +84,10 @@ public class Enrollment {
 
 	public void setOnlyUpdate(boolean onlyUpdate) {
 		this.onlyUpdate = onlyUpdate;
+	}
+
+	public List<Lesson> getLessonsDone() {
+		return lessonsDone;
 	}
 
 	@Override
