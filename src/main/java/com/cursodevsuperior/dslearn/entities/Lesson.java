@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -40,6 +41,9 @@ public abstract class Lesson {
 				@JoinColumn(name = "offer_id")
 		})
 	private List<Enrollment> enrollmentsDone = new ArrayList<>();
+
+	@OneToMany(mappedBy = "lesson")
+	private List<Deliver> deliveries = new ArrayList<>();
 
 	public Lesson() {
 	}

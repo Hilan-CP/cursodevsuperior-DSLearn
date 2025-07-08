@@ -8,6 +8,7 @@ import java.util.Objects;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +25,9 @@ public class Enrollment {
 
 	@ManyToMany(mappedBy = "enrollmentsDone")
 	private List<Lesson> lessonsDone = new ArrayList<>();
+
+	@OneToMany(mappedBy = "enrollment")
+	private List<Deliver> deliveries = new ArrayList<>();
 
 	public Enrollment() {
 	}
@@ -88,6 +92,10 @@ public class Enrollment {
 
 	public List<Lesson> getLessonsDone() {
 		return lessonsDone;
+	}
+
+	public List<Deliver> getDeliveries() {
+		return deliveries;
 	}
 
 	@Override
