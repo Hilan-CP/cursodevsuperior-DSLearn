@@ -36,6 +36,12 @@ public class User {
 	@OneToMany(mappedBy = "id.user")
 	private List<Enrollment> enrollments = new ArrayList<>();
 
+	@OneToMany(mappedBy = "author")
+	private List<Topic> topics = new ArrayList<>();
+
+	@OneToMany(mappedBy = "author")
+	private List<Reply> replies = new ArrayList<>();
+
 	public User() {
 	}
 
@@ -92,6 +98,14 @@ public class User {
 
 	public List<Offer> getOffers() {
 		return enrollments.stream().map(enrollment -> enrollment.getOffer()).toList();
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
+	}
+
+	public List<Reply> getReplies() {
+		return replies;
 	}
 
 	@Override

@@ -36,6 +36,9 @@ public class Offer {
 	@OneToMany(mappedBy = "id.offer")
 	private List<Enrollment> enrollments = new ArrayList<>();
 
+	@OneToMany(mappedBy = "offer")
+	private List<Topic> topics = new ArrayList<>();
+
 	public Offer() {
 	}
 
@@ -97,6 +100,10 @@ public class Offer {
 
 	public List<User> getStudents() {
 		return enrollments.stream().map(enrollment -> enrollment.getStudent()).toList();
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
 	}
 
 	@Override
